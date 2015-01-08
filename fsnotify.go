@@ -28,6 +28,7 @@ const (
 	Remove
 	Rename
 	Chmod
+	Close
 )
 
 // String returns a string representation of the event in the form
@@ -51,6 +52,9 @@ func (e Event) String() string {
 	if e.Op&Chmod == Chmod {
 		buffer.WriteString("|CHMOD")
 	}
+  if e.Op&Close == Close {
+  	buffer.WriteString("|CLOSE")
+  }
 
 	// If buffer remains empty, return no event names
 	if buffer.Len() == 0 {
